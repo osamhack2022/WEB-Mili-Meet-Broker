@@ -1,5 +1,7 @@
+import { Button } from '@mui/material';
+
 function index() {
-  return <button>Hello, world!</button>
+  return <Button variant="contained">Hello World</Button>
 }
 
 export default index;
