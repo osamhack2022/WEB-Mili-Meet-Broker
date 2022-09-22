@@ -2,8 +2,8 @@
 ![Logo](https://logosbynick.com/wp-content/uploads/2018/03/final-logo-example.png)
 
 ## 프로잭트 소개
-> 코로나 19 이후 비대면 시대가 열리면서 군대 내에서도 화상회의가 잦아지고 있습니다. 당직 근무를 하면서 매일 하는 화상회의는 너무나도 익숙합니다. 그러나 군대 내에서 사용하는 화상회의 프로그램들은 무겁고 사용법도 어려울 뿐만 아니라 화상회의 프로그램만으로 진행되는 것이 아닌 오디오 믹서나 웹캠 카메라 등 여러 장비를 따로 조정해야 합니다. 이런 상황에서 화상회의가 진행중일 때 화상회의 방에 접속을 못하거나, 스피커나 마이크 소리가 문재 있는 상황이 벌어지면 항상 통신 관련 병사나 간부님들을 부르는 것이 다반사인 상황입니다.  
-  
+> 코로나 19 이후 비대면 시대가 열리면서 군대 내에서도 화상회의가 잦아지고 있습니다. 당직 근무를 하면서 매일 하는 화상회의는 너무나도 익숙합니다. 그러나 군대 내에서 사용하는 화상회의 프로그램들은 무겁고 사용법도 어려울 뿐만 아니라 화상회의 프로그램만으로 진행되는 것이 아닌 오디오 믹서나 웹캠 카메라 등 여러 장비를 따로 조정해야 합니다. 이런 상황에서 화상회의가 진행중일 때 화상회의 방에 접속을 못하거나, 스피커나 마이크 소리가 문재 있는 상황이 벌어지면 항상 통신 관련 병사나 간부님들을 부르는 것이 다반사인 상황입니다.
+
 이런 상황에서 저희는 접근성이 높은 웹 기반으로 화상회의 프로젝트를 진행하게 되었습니다.
 밀리미트는 웹 기반의 실시간 화상회의 서비스로 좀 더 가볍고(Light), 쉬운(Easy) 화상회의 서비스를 지향하고 있습니다.
 
@@ -22,15 +22,24 @@
 * ECMAScript 6 지원 브라우저 사용
 * 권장: Google Chrome 버젼 77 이상
 
-## 기술 스택 (Technique Used) 
+## 기술 스택 (Technique Used)
 ### Server(back-end)
- -  nodejs
- -  express를 사용한 프레임워크 
- -  DB 등 사용한 다른 프로그램 
- 
+<img src="https://img.shields.io/badge/nodejs-339933?style=for-the-badge&logo=Node.js&logoColor=white" />
+<img src="https://img.shields.io/badge/express-000000?style=for-the-badge&logo=Express&logoColor=white" />
+
+<img src="https://img.shields.io/badge/webrtc-333333?style=for-the-badge&logo=WebRTC&logoColor=white" />
+<img src="https://img.shields.io/badge/socketio-010101?style=for-the-badge&logo=Socket.io&logoColor=white" />
+
+
 ### Front-end
- -  react.js, Next.js를 사용한 front-end 프레임워크 
- -  Figma를 활용한 UI 디자인
+<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black" />
+<img src="https://img.shields.io/badge/nextjs-000000?style=for-the-badge&logo=Next.js&logoColor=white" />
+<img src="https://img.shields.io/badge/mui-007FFF?style=for-the-badge&logo=MUI&logoColor=white" />
+
+<img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=Typescript&logoColor=white" />
+<img src="https://img.shields.io/badge/eslint-4B32C3?style=for-the-badge&logo=ESLint&logoColor=white" />
+
+<img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white" />
 
 ## 설치 안내 (Installation Process)
 ```bash
@@ -48,9 +57,9 @@ $ yarn start or npm run start
 
  편한 마크다운 에디터를 찾아서 사용
  샘플 에디터 [https://stackedit.io/app#](https://stackedit.io/app#)
- 
+
 ## 팀 정보 (Team Information)
-- JunSang Yu (junsang.yu3@gmail.com), Github Id: JunSangYu
+- JunSang Yu (junsang.yu3@gmail.com), Github Id: stupidJoon
 - Minjun Lee (sohwi0305gmail.com), Github Id: min0305
 - Kwanghyeon Jo (gwangh7@gmail.com), Github Id: Kidprogramer1039
 
