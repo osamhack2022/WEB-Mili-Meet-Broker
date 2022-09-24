@@ -24,22 +24,24 @@
 
 ## 기술 스택 (Technique Used)
 ### Server(back-end)
-<img src="https://img.shields.io/badge/nodejs-339933?style=for-the-badge&logo=Node.js&logoColor=white" />
-<img src="https://img.shields.io/badge/express-000000?style=for-the-badge&logo=Express&logoColor=white" />
+![](https://img.shields.io/badge/nodejs-339933?style=for-the-badge&logo=Node.js&logoColor=white)
+![](https://img.shields.io/badge/express-000000?style=for-the-badge&logo=Express&logoColor=white)
 
-<img src="https://img.shields.io/badge/webrtc-333333?style=for-the-badge&logo=WebRTC&logoColor=white" />
-<img src="https://img.shields.io/badge/socketio-010101?style=for-the-badge&logo=Socket.io&logoColor=white" />
+![](https://img.shields.io/badge/webrtc-333333?style=for-the-badge&logo=WebRTC&logoColor=white)
+![](https://img.shields.io/badge/socketio-010101?style=for-the-badge&logo=Socket.io&logoColor=white)
+![](https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white)
 
 
 ### Front-end
-<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black" />
-<img src="https://img.shields.io/badge/nextjs-000000?style=for-the-badge&logo=Next.js&logoColor=white" />
-<img src="https://img.shields.io/badge/mui-007FFF?style=for-the-badge&logo=MUI&logoColor=white" />
+![](https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![](https://img.shields.io/badge/nextjs-000000?style=for-the-badge&logo=Next.js&logoColor=white)
+![](https://img.shields.io/badge/mui-007FFF?style=for-the-badge&logo=MUI&logoColor=white)
 
-<img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=Typescript&logoColor=white" />
-<img src="https://img.shields.io/badge/eslint-4B32C3?style=for-the-badge&logo=ESLint&logoColor=white" />
+![](https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=Typescript&logoColor=white)
+![](https://img.shields.io/badge/eslint-4B32C3?style=for-the-badge&logo=ESLint&logoColor=white)
+![](https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white)
 
-<img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white" />
+![](https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white)
 
 ## 설치 안내 (Installation Process)
 ```bash
