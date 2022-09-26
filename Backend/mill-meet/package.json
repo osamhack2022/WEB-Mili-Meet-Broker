@@ -1,0 +1,24 @@
+{
+  "name": "web_mili-meet_broker",
+  "version": "1.0.0",
+  "description": "![Logo](https://logosbynick.com/wp-content/uploads/2018/03/final-logo-example.png)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/osamhack2022/WEB_Mili-Meet_Broker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/osamhack2022/WEB_Mili-Meet_Broker/issues"
+  },
+  "homepage": "https://github.com/osamhack2022/WEB_Mili-Meet_Broker#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
