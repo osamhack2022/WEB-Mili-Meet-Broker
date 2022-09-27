@@ -1,25 +1,25 @@
 import { styled } from '@mui/material';
-import { RefObject, useEffect } from 'react';
+import { ForwardedRef, forwardRef, useEffect } from 'react';
 
 interface VideoProps {
   mediaStream: MediaStream | undefined;
-  test: RefObject<HTMLVideoElement> | undefined;
 }
 
 const VideoStyled = styled('video')({
   backgroundColor: 'black'
 });
 
-function Video({ mediaStream, test }: VideoProps) {
+function Video({ mediaStream }: VideoProps, ref: ForwardedRef<HTMLVideoElement>) {
 
   useEffect(() => {
-    if (mediaStream === undefined || test === undefined || test.current === null) return;
-    test.current.srcObject = mediaStream;
-  }, [mediaStream, test]);
+    if (mediaStream === undefined) return;
+    if (typeof ref === 'function' || ref === null || ref.current === null) return;
+    ref.current.srcObject = mediaStream;
+  }, [mediaStream, ref]);
 
   return (
-    <VideoStyled ref={test} width="640" height="360" autoPlay></VideoStyled>
+    <VideoStyled ref={ref} width="640" height="360" autoPlay></VideoStyled>
   );
 }
 
-export default Video;
+export default forwardRef<HTMLVideoElement, VideoProps>(Video);

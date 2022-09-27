@@ -66,9 +66,9 @@ function Index() {
 
   return (
     <>
-      <Video mediaStream={callerMediaStream} test={callerVideo} />
+      <Video mediaStream={callerMediaStream} ref={callerVideo} />
       <br />
-      <Video mediaStream={calleeMediaStream} test={calleeVideo} />
+      <Video mediaStream={calleeMediaStream} ref={calleeVideo} />
       <Button variant='contained' onClick={setDisplayMediaStream}>getDisplayMedia</Button>
     </>
   )
