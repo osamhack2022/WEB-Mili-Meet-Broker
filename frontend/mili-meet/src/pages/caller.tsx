@@ -1,43 +1,19 @@
 import { Button } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Video from '../components/Video';
 
-// const RTC_CONFIGURATION = {
-//   iceServers: [
-//     { urls: 'stun:stun.l.google.com:19302' },
-//     {
-//       urls: 'turn:numb.viagenie.ca',
-//       credential: 'muazkh',
-//       username: 'webrtc@live.com'
-//     }
-//   ]
-// };
+const RTC_CONFIGURATION = {
+  iceServers: [
+    { urls: 'stun:stun.l.google.com:19302' },
+    {
+      urls: 'turn:numb.viagenie.ca',
+      credential: 'muazkh',
+      username: 'webrtc@live.com'
+    }
+  ]
+};
 
-// async function makePeerConnection(mediaStream: MediaStream) {
-//   let pc = new RTCPeerConnection(RTC_CONFIGURATION);
-//   mediaStream.getTracks().forEach((track) => {
-//     pc.addTrack(track);
-//   });
-
-//   pc.onicecandidate = (event) => {
-//     if (event.candidate != null) {
-//       // socket.emit('candidate', { candidate: event.candidate });
-//       console.log('Candidate Sent:', { candidate: event.candidate });
-//     }
-//   };
-
-//   pc.oniceconnectionstatechange = () => {
-//     if (pc.iceConnectionState === "disconnected") {
-//       pc.close();
-//       console.log("PC CLOSED!!!@#!@#!@#!");
-//     }
-//   };
-
-//   const offer = await pc.createOffer();
-//   await pc.setLocalDescription(offer);
-//   console.log('offer:', pc.localDescription);
-//   // socket.emit('offer', { offer: pc.localDescription });
-// }
+let pc: RTCPeerConnection;
 
 function Caller() {
   const [mediaStream, setMediaStream] = useState<MediaStream>();
@@ -46,6 +22,25 @@ function Caller() {
     const displayMediaStream = await navigator.mediaDevices.getDisplayMedia({ audio: false, video: true });
     setMediaStream(displayMediaStream);
   }
+
+  useEffect(() => {
+    if (mediaStream === undefined) return;
+
+    pc = new RTCPeerConnection(RTC_CONFIGURATION);
+
+    mediaStream.getTracks().forEach((track) => pc.addTrack(track));
+
+    pc.onicecandidate = (ev) => {
+      if (ev.candidate === null) return;
+      console.log('Caller onicecandidate', ev);
+    };
+
+    (async () => {
+      const offer = await pc.createOffer();
+      await pc.setLocalDescription(offer);
+      console.log('Caller Offer', offer);
+    })();
+  }, [mediaStream]);
 
   return (
     <>

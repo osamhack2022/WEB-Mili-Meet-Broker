@@ -1,5 +1,5 @@
 import { Button } from '@mui/material';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Video from '../components/Video';
 
 const RTC_CONFIGURATION = {
@@ -19,8 +19,6 @@ let callee: RTCPeerConnection;
 function Index() {
   const [callerMediaStream, setcallerMediaStream] = useState<MediaStream>();
   const [calleeMediaStream, setcalleeMediaStream] = useState<MediaStream>();
-  const callerVideo = useRef<HTMLVideoElement>(null);
-  const calleeVideo = useRef<HTMLVideoElement>(null);
 
   async function setDisplayMediaStream() {
     const displayMediaStream = await navigator.mediaDevices.getDisplayMedia({ audio: false, video: true });
@@ -48,7 +46,6 @@ function Index() {
     };
 
     callee.ontrack = (ev) => {
-      if (calleeVideo.current === null) return;
       console.log('callee onTrack', ev);
       const mediaStream = new MediaStream([ev.track]);
       setcalleeMediaStream(mediaStream);
@@ -66,9 +63,9 @@ function Index() {
 
   return (
     <>
-      <Video mediaStream={callerMediaStream} ref={callerVideo} />
+      <Video mediaStream={callerMediaStream} />
       <br />
-      <Video mediaStream={calleeMediaStream} ref={calleeVideo} />
+      <Video mediaStream={calleeMediaStream} />
       <Button variant='contained' onClick={setDisplayMediaStream}>getDisplayMedia</Button>
     </>
   )
