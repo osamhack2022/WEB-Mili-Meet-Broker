@@ -1,6 +1,15 @@
+import { createServer } from 'http';
 import { Server } from 'socket.io';
+import express from 'express';
+import cors from 'cors';
 
-const io = new Server(8080);
+const app = express();
+app.use(cors());
+
+const httpServer = createServer(app);
+const io = new Server(httpServer, {
+  cors: { origin: '*' }
+});
 
 io.on("connection", (socket) => {
   socket.on('offer', (offer) => {
@@ -19,3 +28,5 @@ io.on("connection", (socket) => {
     io.emit('callee-icecandidate', icecandidate);
   });
 });
+
+httpServer.listen(8080);
