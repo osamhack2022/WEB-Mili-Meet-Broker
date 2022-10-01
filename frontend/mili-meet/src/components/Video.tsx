@@ -16,10 +16,11 @@ function Video({ mediaStream }: VideoProps) {
     if (mediaStream === undefined) return;
     if (ref.current === null) return;
     ref.current.srcObject = mediaStream;
+    ref.current.play();
   }, [mediaStream, ref]);
 
   return (
-    <VideoStyled ref={ref} width="640" height="360" autoPlay></VideoStyled>
+    <VideoStyled ref={ref} width="640" height="360" muted autoPlay></VideoStyled>
   );
 }
 

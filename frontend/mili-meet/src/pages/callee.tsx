@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { io } from 'socket.io-client';
 import Video from '../components/Video';
 
 const RTC_CONFIGURATION = {
@@ -14,29 +15,38 @@ const RTC_CONFIGURATION = {
 
 let pc: RTCPeerConnection;
 
+const socket = io('https://osamhack2022-web-mili-meet-broker-g55g59rv9qjhwwq5-8080.githubpreview.dev');
+
 function Callee() {
   const [mediaStream, setMediaStream] = useState<MediaStream>();
 
   useEffect(() => {
-    if (mediaStream === undefined) return;
-
     pc = new RTCPeerConnection(RTC_CONFIGURATION);
 
     pc.onicecandidate = (ev) => {
       if (ev.candidate === null) return;
-      console.log('Callee onicecandidate', ev);
+      socket.emit('calle-icecandidate', ev.candidate);
     };
-
     pc.ontrack = (ev) => {
-      console.log('Callee ontrack', ev);
+      console.log(ev.track);
       const mediaStream = new MediaStream([ev.track]);
       setMediaStream(mediaStream);
-    }
-  }, [mediaStream]);
+    };
+
+    socket.on('offer', async (offer: RTCSessionDescription) => {
+      await pc.setRemoteDescription(offer);
+      const answer = await pc.createAnswer();
+      await pc.setLocalDescription(answer);
+      socket.emit('answer', answer);
+    });
+    socket.on('caller-icecandidate', (candidate: RTCIceCandidate)  => {
+      pc.addIceCandidate(candidate)
+    });
+  }, []);
 
   return (
     <>
-      <Video mediaStream={undefined} />
+      <Video mediaStream={mediaStream} />
     </>
   )
 }
