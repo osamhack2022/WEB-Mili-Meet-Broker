@@ -18,8 +18,12 @@ let pc: RTCPeerConnection;
 
 const socket = io('https://osamhack2022-web-mili-meet-broker-g55g59rv9qjhwwq5-8080.githubpreview.dev');
 
-socket.on('answer', (data) => {
-  console.log(data);
+socket.on('answer', (answer: RTCSessionDescription) => {
+  pc.setRemoteDescription(answer);
+});
+
+socket.on('callee-icecandidate', (candidate: RTCIceCandidate)  => {
+  pc.addIceCandidate(candidate)
 });
 
 function Caller() {
@@ -39,13 +43,13 @@ function Caller() {
 
     pc.onicecandidate = (ev) => {
       if (ev.candidate === null) return;
-      console.log('Caller onicecandidate', ev);
+      socket.emit('caller-icecandidate', ev.candidate);
     };
 
     (async () => {
       const offer = await pc.createOffer();
       await pc.setLocalDescription(offer);
-      console.log('Caller Offer', offer);
+      socket.emit('offer', offer);
     })();
   }, [mediaStream]);
 
