@@ -1,5 +1,6 @@
 import { Button } from '@mui/material';
 import { useState, useEffect } from 'react';
+import { io } from 'socket.io-client';
 import Video from '../components/Video';
 
 const RTC_CONFIGURATION = {
@@ -14,6 +15,12 @@ const RTC_CONFIGURATION = {
 };
 
 let pc: RTCPeerConnection;
+
+const socket = io('https://osamhack2022-web-mili-meet-broker-g55g59rv9qjhwwq5-8080.githubpreview.dev');
+
+socket.on('answer', (data) => {
+  console.log(data);
+});
 
 function Caller() {
   const [mediaStream, setMediaStream] = useState<MediaStream>();
