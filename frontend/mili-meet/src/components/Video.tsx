@@ -10,15 +10,17 @@ const VideoStyled = styled('video')({
 });
 
 function Video({ mediaStream }: VideoProps) {
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const ref = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (!mediaStream || !videoRef.current) return;
-    videoRef.current.srcObject = mediaStream;
-  }, [mediaStream, videoRef]);
+    if (mediaStream === undefined) return;
+    if (ref.current === null) return;
+    ref.current.srcObject = mediaStream;
+    ref.current.play();
+  }, [mediaStream, ref]);
 
   return (
-    <VideoStyled ref={videoRef} width="640" height="360" autoPlay></VideoStyled>
+    <VideoStyled ref={ref} width="640" height="360" muted autoPlay></VideoStyled>
   );
 }
 
