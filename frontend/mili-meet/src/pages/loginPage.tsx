@@ -1,8 +1,10 @@
-import styles from "./login.module.css";
+import { Button, TextField } from "@mui/material";
+import styles from "./loginPage.module.css";
 import { Box } from "@mui/material";
+import Link from "next/link";
 
 // 로그인 화면
-function login() {
+function Login() {
   return (
     <>
       <Box
@@ -16,14 +18,14 @@ function login() {
         <h1 className={styles.title}>Mili-Meet</h1>
         <div className={styles.input}>
           <TextField
-            id="userID"
+            id="userId"
             label="ID"
             variant="outlined"
             margin="normal"
             fullWidth
           />
           <TextField
-            id="password"
+            id="userPassword"
             label="Password"
             variant="outlined"
             type="password"
@@ -41,20 +43,21 @@ function login() {
           >
             로그인
           </Button>
-          <Button
-            href="./register"
-            variant="contained"
-            className="registerPageButton"
-            size="large"
-            sx={{ mt: 3, pl: 9, pr: 9, pt: 2, pb: 2 }}
-            type="submit"
-          >
-            회원가입
-          </Button>
+          <Link href="/register">
+            <Button
+              variant="contained"
+              className="registerPageButton"
+              size="large"
+              sx={{ mt: 3, pl: 9, pr: 9, pt: 2, pb: 2 }}
+              type="submit"
+            >
+              회원가입
+            </Button>
+          </Link>
         </div>
       </Box>
     </>
   );
 }
 
-export default login;
+export default Login;

@@ -1,10 +1,10 @@
-import Register from './register';
-import Login from './login';
-function Index() {
+import Login from "./loginPage";
 
+function Index() {
   return (
-    <>
-    </>
+  <>
+  <Login />
+  </>
   )
 }
 

@@ -2,6 +2,7 @@ import { Button } from "@mui/material";
 import { TextField } from "@mui/material";
 import styles from "./register.module.css";
 import { Box } from "@mui/material";
+import Link from "next/link";
 
 //회원가입 화면
 function Register() {
@@ -32,7 +33,7 @@ function Register() {
             fullWidth
           />
           <TextField
-            id="password"
+            id="userPassword"
             label="Password"
             variant="outlined"
             type="password"
@@ -41,15 +42,16 @@ function Register() {
           />
         </div>
         <div className={styles.button}>
-          <Button
-            href="./login"
-            variant="contained"
-            className="loginPageButton"
-            size="large"
-            sx={{ mt: 3, pl: 34, pr: 34, pt: 2, pb: 2 }}
-          >
-            회원가입
-          </Button>
+          <Link href="/login">
+            <Button
+              variant="contained"
+              className="loginPageButton"
+              size="large"
+              sx={{ mt: 3, pl: 34, pr: 34, pt: 2, pb: 2 }}
+            >
+              로그인
+            </Button>
+          </Link>
         </div>
       </Box>
     </>
