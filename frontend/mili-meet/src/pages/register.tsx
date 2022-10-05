@@ -42,7 +42,7 @@ function Register() {
           />
         </div>
         <div className={styles.button}>
-          <Link href="/login">
+          <Link href="/loginPage">
             <Button
               variant="contained"
               className="loginPageButton"
