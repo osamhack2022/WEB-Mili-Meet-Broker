@@ -34,15 +34,17 @@ function Login() {
           />
         </div>
         <div className={styles.button}>
-          <Button
-            variant="contained"
-            className="loginPageButton"
-            size="large"
-            sx={{ mt: 3, pl: 9, pr: 9, pt: 2, pb: 2 }}
-            type="submit"
-          >
-            로그인
-          </Button>
+        <Link href="/roomCode">
+            <Button
+              variant="contained"
+              className="loginPageButton"
+              size="large"
+              sx={{ mt: 3, pl: 9, pr: 9, pt: 2, pb: 2 }}
+              type="submit"
+            >
+              로그인
+            </Button>
+          </Link>
           <Link href="/register">
             <Button
               variant="contained"
