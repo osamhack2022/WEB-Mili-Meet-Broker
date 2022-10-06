@@ -1,9 +1,14 @@
 import { styled } from '@mui/material';
-import { Typography, Fab, Avatar } from '@mui/material';
+import { Typography, Fab, Avatar, TextField, Button } from '@mui/material';
 import MicIcon from '@mui/icons-material/Mic';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CallEndIcon from '@mui/icons-material/CallEnd';
+import CampaignIcon from '@mui/icons-material/Campaign';
+import PersonIcon from '@mui/icons-material/Person';
+import SettingsIcon from '@mui/icons-material/Settings';
+import SendIcon from '@mui/icons-material/Send';
+
 
 const Background = styled('div')({
   width: '100vw',
@@ -12,11 +17,37 @@ const Background = styled('div')({
   display: 'flex'
 });
 
+// -----------------------------------------------
+
 const SideBar = styled('div')({
   width: '20%',
   minWidth: '300px',
   height: '100%'
 });
+
+const SettingFab = styled(Fab)`
+  margin: 1rem;
+`
+
+const ConnectedUserList = styled('div')`
+
+`;
+
+const ConnectedUser = styled('div')`
+  display: flex;
+  justify-content: space-around;
+`;
+
+const ChatList = styled('div')`
+
+`;
+
+const SendChat = styled('div')`
+  display: flex;
+  justify-content: space-around;
+`;
+
+// -----------------------------------------------
 
 const MainContainer = styled('div')({
   width: '80%',
@@ -26,12 +57,14 @@ const MainContainer = styled('div')({
 
 const TopBar = styled('div')({
   width: '100%',
-  height: '15%'
+  height: '15%',
+  minHeight: '100px'
 });
 
 const Main = styled('div')({
   width: '100%',
   height: '85%',
+  maxHeight: 'calc(100% - 100px)',
   backgroundColor: '#212121',
   display: 'flex',
   flexDirection: 'column'
@@ -45,7 +78,7 @@ const ConferenceGrid = styled('div')`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 1rem;
-`
+`;
 
 const ConferenceUser = styled('div')`
   background-color: #646464;
@@ -53,21 +86,27 @@ const ConferenceUser = styled('div')`
   margin-top: auto;
   margin-bottom: auto;
   border-radius: .5rem;
+  position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`
+  align-items: flex-end;
+`;
 
 const ConferenceUserProfile = styled(Avatar)`
   background-color: #ff9800;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(1.5);
-`
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+`;
 
 const ConferenceUserName = styled(Typography)`
   color: white;
-`
+  margin: .5rem;
+`;
 
 // -----------------------------------------------
 
@@ -99,7 +138,31 @@ const FabGroup = styled('div')`
 function Conference() {
   return (
     <Background>
-      <SideBar></SideBar>
+      <SideBar>
+        <SettingFab color="primary"><SettingsIcon /></SettingFab>
+        <ConnectedUserList>
+          <Typography variant="h5" sx={{ textAlign: 'center' }}>접속인원</Typography>
+          <ConnectedUser>
+            <CampaignIcon />
+            <Typography>당직사령</Typography>
+          </ConnectedUser>
+          <ConnectedUser>
+            <PersonIcon />
+            <Typography>당직사관</Typography>
+          </ConnectedUser>
+        </ConnectedUserList>
+        <ChatList>
+          <Typography variant="h5" sx={{ textAlign: 'center' }}>문자대화</Typography>
+          <Typography sx={{ textAlign: 'left' }}>당직사령: ㅁㅁㅁ</Typography>
+          <Typography sx={{ textAlign: 'right' }}>당직사관: ㅁㅁㅁ</Typography>
+        </ChatList>
+        <SendChat>
+          <TextField rows="2" label="문자입력" multiline />
+          <Button variant="contained" endIcon={<SendIcon />}>
+            Send
+          </Button>
+        </SendChat>
+      </SideBar>
       <MainContainer>
         <TopBar></TopBar>
         <Main>
