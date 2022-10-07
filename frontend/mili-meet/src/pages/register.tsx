@@ -3,9 +3,29 @@ import { TextField } from "@mui/material";
 import styles from "./register.module.css";
 import { Box } from "@mui/material";
 import Link from "next/link";
+import { useState } from 'react'
 
 //회원가입 화면
 function Register() {
+
+  const [Id, setId] = useState("");
+  const [Password, setPassword] = useState("");
+  const [Email, setEmail] = useState("");
+
+  const onPasswordHandler = (event) => {
+    setPassword(event.currentTarget.value)
+    console.log(Password);
+}
+
+const onIdHandler = (event) => {
+    setId(event.currentTarget.value)
+    console.log(Id);
+}
+
+const onEmailHandler = (event) => {
+    setEmail(event.currentTarget.value)
+    console.log(Email);
+}
   return (
     <>
       <Box
@@ -22,15 +42,20 @@ function Register() {
             id="email"
             label="Email"
             variant="outlined"
-            margin="normal"
-            fullWidth
+            margin="normal"            
+            value={Email}
+            onChange={onEmailHandler}
+            required
           />
           <TextField
+            name="userId"
             id="userId"
             label="ID"
             variant="outlined"
             margin="normal"
-            fullWidth
+            value={Id}
+            onChange={onIdHandler}
+            required
           />
           <TextField
             id="userPassword"
@@ -38,7 +63,9 @@ function Register() {
             variant="outlined"
             type="password"
             margin="normal"
-            fullWidth
+            value={Password}
+            onChange={onPasswordHandler}
+            required
           />
         </div>
         <div className={styles.button}>
