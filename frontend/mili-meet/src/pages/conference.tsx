@@ -1,5 +1,5 @@
 import { styled } from '@mui/material';
-import { Typography, Fab, Avatar, TextField, Button } from '@mui/material';
+import { Typography, Fab, Avatar, TextField, Button, Divider, IconButton } from '@mui/material';
 import MicIcon from '@mui/icons-material/Mic';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -8,6 +8,7 @@ import CampaignIcon from '@mui/icons-material/Campaign';
 import PersonIcon from '@mui/icons-material/Person';
 import SettingsIcon from '@mui/icons-material/Settings';
 import SendIcon from '@mui/icons-material/Send';
+import { Dual, Multiple, OneToN, Quad } from '../components/svg';
 
 
 const Background = styled('div')({
@@ -22,7 +23,10 @@ const Background = styled('div')({
 const SideBar = styled('div')({
   width: '20%',
   minWidth: '300px',
-  height: '100%'
+  height: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between'
 });
 
 const SettingFab = styled(Fab)`
@@ -36,6 +40,9 @@ const ConnectedUserList = styled('div')`
 const ConnectedUser = styled('div')`
   display: flex;
   justify-content: space-around;
+  margin: .5rem 0;
+  border: 1px solid black;
+  border-radius: .5rem;
 `;
 
 const ChatList = styled('div')`
@@ -45,6 +52,7 @@ const ChatList = styled('div')`
 const SendChat = styled('div')`
   display: flex;
   justify-content: space-around;
+  gap: .5rem;
 `;
 
 // -----------------------------------------------
@@ -58,7 +66,10 @@ const MainContainer = styled('div')({
 const TopBar = styled('div')({
   width: '100%',
   height: '15%',
-  minHeight: '100px'
+  minHeight: '100px',
+  display: 'flex',
+  alignItems: 'center',
+  gap: '1rem'
 });
 
 const Main = styled('div')({
@@ -140,31 +151,41 @@ function Conference() {
     <Background>
       <SideBar>
         <SettingFab color="primary"><SettingsIcon /></SettingFab>
-        <ConnectedUserList>
-          <Typography variant="h5" sx={{ textAlign: 'center' }}>접속인원</Typography>
-          <ConnectedUser>
-            <CampaignIcon />
-            <Typography>당직사령</Typography>
-          </ConnectedUser>
-          <ConnectedUser>
-            <PersonIcon />
-            <Typography>당직사관</Typography>
-          </ConnectedUser>
-        </ConnectedUserList>
-        <ChatList>
-          <Typography variant="h5" sx={{ textAlign: 'center' }}>문자대화</Typography>
-          <Typography sx={{ textAlign: 'left' }}>당직사령: ㅁㅁㅁ</Typography>
-          <Typography sx={{ textAlign: 'right' }}>당직사관: ㅁㅁㅁ</Typography>
-        </ChatList>
-        <SendChat>
-          <TextField rows="2" label="문자입력" multiline />
-          <Button variant="contained" endIcon={<SendIcon />}>
-            Send
-          </Button>
-        </SendChat>
+        <div style={{ height: '85%', display: 'flex', flexDirection: 'column', gap: '1rem', margin: '0 10%' }}>
+          <Divider />
+          <ConnectedUserList>
+            <Typography variant="h5" sx={{ textAlign: 'center' }}>접속인원</Typography>
+            <ConnectedUser>
+              <CampaignIcon />
+              <Typography>당직사령</Typography>
+            </ConnectedUser>
+            <ConnectedUser>
+              <PersonIcon />
+              <Typography>당직사관</Typography>
+            </ConnectedUser>
+          </ConnectedUserList>
+          <Divider />
+          <ChatList>
+            <Typography variant="h5" sx={{ textAlign: 'center' }}>문자대화</Typography>
+            <Typography sx={{ textAlign: 'left' }}>당직사령: ㅁㅁㅁ</Typography>
+            <Typography sx={{ textAlign: 'right' }}>당직사관: ㅁㅁㅁ</Typography>
+          </ChatList>
+          <SendChat>
+            <TextField rows="2" label="문자입력" multiline />
+            <Button variant="contained" endIcon={<SendIcon />}>
+              Send
+            </Button>
+          </SendChat>
+        </div>
       </SideBar>
       <MainContainer>
-        <TopBar></TopBar>
+        <TopBar>
+          <Typography variant='h5'>배치모드</Typography>
+          <IconButton size='large'><Dual /></IconButton>
+          <IconButton size='large'><Quad /></IconButton>
+          <IconButton size='large'><Multiple /></IconButton>
+          <IconButton size='large'><OneToN /></IconButton>
+        </TopBar>
         <Main>
           <ConferenceGrid>
             <ConferenceUser>
