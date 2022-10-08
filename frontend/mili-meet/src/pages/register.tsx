@@ -11,6 +11,9 @@ function Register() {
   function saveUserData(Email: String, userId: String , Password: String) {
     fetch('http://localhost:3000/backend/index.js', {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         Email: Email,
         Id: userId,

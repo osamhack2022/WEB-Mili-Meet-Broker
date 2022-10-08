@@ -11,6 +11,9 @@ function Login() {
   function signIn(userId: String , Password: String) {
     fetch('http://localhost:3000/backend/index.js', {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         Id: userId,
         password: Password,
