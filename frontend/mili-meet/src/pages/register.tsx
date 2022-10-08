@@ -3,26 +3,26 @@ import { TextField } from "@mui/material";
 import styles from "./register.module.css";
 import { Box } from "@mui/material";
 import Link from "next/link";
-import { useState } from 'react'
+import { SetStateAction, useState } from 'react'
 
 //회원가입 화면
 function Register() {
 
-  const [Id, setId] = useState("");
+  const [userId, setuserId] = useState("");
   const [Password, setPassword] = useState("");
   const [Email, setEmail] = useState("");
 
-  const onPasswordHandler = (event) => {
+  const onPasswordHandler = (event: { currentTarget: { value: SetStateAction<string>; }; }) => {
     setPassword(event.currentTarget.value)
     console.log(Password);
 }
 
-const onIdHandler = (event) => {
-    setId(event.currentTarget.value)
-    console.log(Id);
+const onIdHandler = (event: { currentTarget: { value: SetStateAction<string>; }; }) => {
+    setuserId(event.currentTarget.value)
+    console.log(userId);
 }
 
-const onEmailHandler = (event) => {
+const onEmailHandler = (event: { currentTarget: { value: SetStateAction<string>; }; }) => {
     setEmail(event.currentTarget.value)
     console.log(Email);
 }
@@ -53,7 +53,7 @@ const onEmailHandler = (event) => {
             label="ID"
             variant="outlined"
             margin="normal"
-            value={Id}
+            value={userId}
             onChange={onIdHandler}
             required
           />
