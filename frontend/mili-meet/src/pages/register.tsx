@@ -8,6 +8,16 @@ import { SetStateAction, useState } from 'react'
 //회원가입 화면
 function Register() {
 
+  function saveUserData(Email: String, userId: String , Password: String) {
+    fetch('http://localhost:3000/backend/index.js', {
+      method: "POST",
+      body: JSON.stringify({
+        Email: Email,
+        Id: userId,
+        password: Password,
+      }),
+    })
+  }
   const [userId, setuserId] = useState("");
   const [Password, setPassword] = useState("");
   const [Email, setEmail] = useState("");
@@ -75,6 +85,7 @@ const onEmailHandler = (event: { currentTarget: { value: SetStateAction<string>;
               className="loginPageButton"
               size="large"
               sx={{ mt: 3, pl: 34, pr: 34, pt: 2, pb: 2 }}
+              onClick={() => saveUserData(Email, userId, Password)}
             >
               로그인
             </Button>
