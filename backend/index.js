@@ -6,6 +6,9 @@ import cors from 'cors';
 const app = express();
 app.use(cors());
 
+
+// ------------------------------------
+
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: { origin: '*' }
@@ -29,4 +32,6 @@ io.on("connection", (socket) => {
   });
 });
 
-httpServer.listen(8080);
+httpServer.listen(8080, () => {
+  console.log('server is working!');
+});
