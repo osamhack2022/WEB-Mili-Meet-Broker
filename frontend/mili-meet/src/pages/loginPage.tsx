@@ -7,31 +7,29 @@ import { SetStateAction, useState } from 'react';
 
 // 로그인 화면
 function Login() {
-  
-  function signIn(userId: String , Password: String) {
-    fetch('http://localhost:3000/backend/index.js', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        Id: userId,
-        password: Password,
-      }),
-    })
-  }
+
+//로그인 페이지 구현 코드 작성을 위해 임시로 firebase 사용  
+ async function getUser(userData: any) {
+  const response = await fetch('https://mili-meet-default-rtdb.firebaseio.com/', {
+    method: 'POST',
+    body: JSON.stringify(userData),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+  const data = await response.json();
+  console.log(data);
+}
 
   const [userId, setuserId] = useState("");
   const [Password, setPassword] = useState("");
 
   const onPasswordHandler = (event: { currentTarget: { value: SetStateAction<string>; }; }) => {
     setPassword(event.currentTarget.value)
-    console.log(Password);
   }
 
   const onIdHandler = (event: { currentTarget: { value: SetStateAction<string>; }; }) => {
       setuserId(event.currentTarget.value)
-      console.log(userId);
   }
 
   return (
@@ -74,7 +72,7 @@ function Login() {
                 className="loginPageButton"
                 size="large"
                 sx={{ mt: 3, pl: 9, pr: 9, pt: 2, pb: 2 }}
-                onClick={() => signIn(userId, Password)}
+                onClick={() => getUser()}
               >
                 로그인
               </Button>
@@ -95,5 +93,5 @@ function Login() {
     </>
   );
 }
-
+          //userId, Password
 export default Login;

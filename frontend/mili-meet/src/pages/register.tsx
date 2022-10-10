@@ -8,36 +8,33 @@ import { SetStateAction, useState } from 'react'
 //회원가입 화면
 function Register() {
 
-  function saveUserData(Email: String, userId: String , Password: String) {
-    fetch('http://localhost:3000/backend/index.js', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        Email: Email,
-        Id: userId,
-        password: Password,
-      }),
-    })
-  }
+  //로그인 페이지 구현 코드 작성을 위해 임시로 firebase 사용
+    async function saveUserData(userData: any) {
+      const response = await fetch('https://mili-meet-default-rtdb.firebaseio.com/userData.json', {
+        method: 'POST',
+        body: JSON.stringify(userData),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const data = await response.json();
+      console.log(data);
+    }
+  
   const [userId, setuserId] = useState("");
   const [Password, setPassword] = useState("");
   const [Email, setEmail] = useState("");
 
   const onPasswordHandler = (event: { currentTarget: { value: SetStateAction<string>; }; }) => {
     setPassword(event.currentTarget.value)
-    console.log(Password);
 }
 
 const onIdHandler = (event: { currentTarget: { value: SetStateAction<string>; }; }) => {
     setuserId(event.currentTarget.value)
-    console.log(userId);
 }
 
 const onEmailHandler = (event: { currentTarget: { value: SetStateAction<string>; }; }) => {
     setEmail(event.currentTarget.value)
-    console.log(Email);
 }
   return (
     <>
@@ -88,7 +85,11 @@ const onEmailHandler = (event: { currentTarget: { value: SetStateAction<string>;
               className="loginPageButton"
               size="large"
               sx={{ mt: 3, pl: 34, pr: 34, pt: 2, pb: 2 }}
-              onClick={() => saveUserData(Email, userId, Password)}
+              onClick={() => saveUserData({
+                id: userId,
+                Email: Email,
+                password: Password
+              })}
             >
               로그인
             </Button>
