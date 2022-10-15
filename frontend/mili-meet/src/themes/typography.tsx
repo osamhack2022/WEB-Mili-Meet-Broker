@@ -1,3 +1,4 @@
+//from https://github.com/codedthemes/mantis-free-react-admin-template.git 
 // ==============================|| DEFAULT THEME - TYPOGRAPHY  ||============================== //
 
 const Typography = (fontFamily: string) => ({
