@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { MouseEvent, SetStateAction, useState } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -14,7 +14,7 @@ const ProfileTab = ({ handleLogout }) => {
     const theme = useTheme();
 
     const [selectedIndex, setSelectedIndex] = useState(0);
-    const handleListItemClick = (event, index) => {
+    const handleListItemClick = (event: MouseEvent<HTMLDivElement, MouseEvent>, index: SetStateAction<number>) => {
         setSelectedIndex(index);
     };
 

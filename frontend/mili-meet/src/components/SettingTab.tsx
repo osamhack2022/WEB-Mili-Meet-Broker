@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { MouseEvent, SetStateAction, useState } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -13,7 +13,7 @@ const SettingTab = () => {
     const theme = useTheme();
 
     const [selectedIndex, setSelectedIndex] = useState(0);
-    const handleListItemClick = (event, index) => {
+    const handleListItemClick = (event: MouseEvent<HTMLDivElement, MouseEvent>, index: SetStateAction<number>) => {
         setSelectedIndex(index);
     };
 

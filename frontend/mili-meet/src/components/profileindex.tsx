@@ -20,8 +20,8 @@ import {
 } from '@mui/material';
 
 // project import
-import MainCard from 'components/MainCard';
-import Transitions from 'components/@extended/Transitions';
+import MainCard from './MainCard';
+import Transitions from './Transitions';
 import ProfileTab from './ProfileTab';
 import SettingTab from './SettingTab';
 
