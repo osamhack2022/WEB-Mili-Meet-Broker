@@ -4,6 +4,8 @@ import styles from "./register.module.css";
 import { Box } from "@mui/material";
 import Link from "next/link";
 import ProfileCard from "../components/ProfileCard";
+
+
 //회원가입 화면
 function RoomCode() {
   return (
