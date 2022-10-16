@@ -12,6 +12,7 @@
     "@ant-design/icons": "^4.7.0",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
+    "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.10.6",
     "i": "^0.3.7",
     "next": "12.3.1",
