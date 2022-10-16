@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { TextField } from "@mui/material";
-import styles from "./register.module.scss";
+import styles from "./register.module.css";
 import { Box } from "@mui/material";
 import Link from "next/link";
 import { SetStateAction, useState } from 'react'
