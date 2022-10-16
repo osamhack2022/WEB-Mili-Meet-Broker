@@ -1,5 +1,5 @@
 import { Button, TextField } from "@mui/material";
-import styles from "./loginPage.module.css";
+import styles from "./loginPage.module.scss";
 import { Box } from "@mui/material";
 import Link from "next/link";
 import { SetStateAction, useState } from 'react';
