@@ -8,9 +8,6 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
-import PersonAdd from '@mui/icons-material/PersonAdd';
-import Settings from '@mui/icons-material/Settings';
-import Logout from '@mui/icons-material/Logout';
 import TextField from '@mui/material/TextField';
 import { SetStateAction, useState } from 'react';
 import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
@@ -28,6 +25,7 @@ export default function AccountMenu() {
 
   const [currentPassword, setcurrentPassword] = useState("");
   const [newPassword, setnewPassword] = useState("");
+  const [passwordFeedback, setPasswordFeedback] = useState("");
 
   const onCurrentPasswordHandler = (event: { currentTarget: { value: SetStateAction<string>; }; }) => {
     setcurrentPassword(event.currentTarget.value)
@@ -35,6 +33,10 @@ export default function AccountMenu() {
 
   const onnewPasswordHandler = (event: { currentTarget: { value: SetStateAction<string>; }; }) => {
     setnewPassword(event.currentTarget.value)
+  }
+
+  const onPasswordFeedbackHandler = (event: { currentTarget: { value: SetStateAction<string>; }; }) => {
+    setPasswordFeedback(event.currentTarget.value)
   }
 
   return (
@@ -59,7 +61,6 @@ export default function AccountMenu() {
         id="account-menu"
         open={open}
         onClose={handleClose}
-        onClick={handleClose}
         PaperProps={{
           elevation: 0,
           sx: {
@@ -89,10 +90,11 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem>
+          <Typography sx={{ ml: 1 }} >Change Password</Typography>           
           <TextField
+                sx={{ display: 'block', pl: 1, pr: 1 }}
                 id="currentPassword"
-                label="Current Password"
+                label="현재 비밀번호 입력"
                 variant="outlined"
                 type="password"
                 margin="normal"
@@ -100,11 +102,10 @@ export default function AccountMenu() {
                 onChange={onCurrentPasswordHandler}
                 required
               />
-        </MenuItem>
-        <MenuItem>
           <TextField
+                sx={{ display: 'block', pl: 1, pr: 1 }}          
                 id="newPassword"
-                label="New Password"
+                label="새 비밀번호 입력"
                 variant="outlined"
                 type="password"
                 margin="normal"
@@ -112,8 +113,18 @@ export default function AccountMenu() {
                 onChange={onnewPasswordHandler}
                 required
               />
-        </MenuItem>
-        <Divider />
+          <TextField
+                sx={{ display: 'block', pl: 1, pr: 1 }}          
+                id="passwordFeedback"
+                label="새 비밀번호 재입력"
+                variant="outlined"
+                type="password"
+                margin="normal"
+                value={passwordFeedback}
+                onChange={onPasswordFeedbackHandler}
+                required
+              />
+
         <MenuItem>
           <ListItemIcon>
             <ChangeCircleIcon fontSize="small" />
