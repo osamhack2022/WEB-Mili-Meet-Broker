@@ -11,6 +11,9 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
+import TextField from '@mui/material/TextField';
+import { SetStateAction, useState } from 'react';
+
 
 //temporary Name에는 추후 이름 입력할 예정
 export default function AccountMenu() {
@@ -22,9 +25,21 @@ export default function AccountMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const [currentPassword, setcurrentPassword] = useState("");
+  const [newPassword, setnewPassword] = useState("");
+
+  const onCurrentPasswordHandler = (event: { currentTarget: { value: SetStateAction<string>; }; }) => {
+    setcurrentPassword(event.currentTarget.value)
+  }
+
+  const onnewPasswordHandler = (event: { currentTarget: { value: SetStateAction<string>; }; }) => {
+    setnewPassword(event.currentTarget.value)
+  }
+
   return (
     <React.Fragment>
-      <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' , borderRadius: '16px'}}>
+      <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' , borderRadius: '16px', justifyContent: 'flex-end'}}>
         <Tooltip title="Account settings">
           <IconButton
             onClick={handleClick}
@@ -75,10 +90,28 @@ export default function AccountMenu() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem>
-          <Avatar /> Profile
+          <TextField
+                id="currentPassword"
+                label="Current Password"
+                variant="outlined"
+                type="password"
+                margin="normal"
+                value={currentPassword}
+                onChange={onCurrentPasswordHandler}
+                required
+              />
         </MenuItem>
         <MenuItem>
-          <Avatar /> My account
+          <TextField
+                id="newPassword"
+                label="New Password"
+                variant="outlined"
+                type="password"
+                margin="normal"
+                value={newPassword}
+                onChange={onnewPasswordHandler}
+                required
+              />
         </MenuItem>
         <Divider />
         <MenuItem>
