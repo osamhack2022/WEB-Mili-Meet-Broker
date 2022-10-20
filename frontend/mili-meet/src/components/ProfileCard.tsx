@@ -13,7 +13,7 @@ import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import TextField from '@mui/material/TextField';
 import { SetStateAction, useState } from 'react';
-
+import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 
 //temporary Name에는 추후 이름 입력할 예정
 export default function AccountMenu() {
@@ -116,21 +116,9 @@ export default function AccountMenu() {
         <Divider />
         <MenuItem>
           <ListItemIcon>
-            <PersonAdd fontSize="small" />
+            <ChangeCircleIcon fontSize="small" />
           </ListItemIcon>
-          Add another account
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          Settings
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <Logout fontSize="small" />
-          </ListItemIcon>
-          Logout
+          Submit
         </MenuItem>
       </Menu>
     </React.Fragment>
