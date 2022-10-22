@@ -4,26 +4,31 @@ import styles from "./register.module.css";
 import { Box } from "@mui/material";
 import Link from "next/link";
 import { SetStateAction, useState } from 'react'
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import app from "./firebase";
 
 //회원가입 화면
 function Register() {
 
   //로그인 페이지 구현 코드 작성을 위해 임시로 firebase 사용
-    async function saveUserData(userData: any) {
-      const response = await fetch('https://mili-meet-default-rtdb.firebaseio.com/userData.json', {
-        method: 'POST',
-        body: JSON.stringify(userData),
-        headers: {
-          'Content-Type': 'application/json'
-        }
+    async function saveUserData() {
+      const auth = getAuth(app);
+      createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        // ...
+      })
+      .catch((error) => {
+
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
       });
-      const data = await response.json();
-      console.log(data);
-    }
   
   const [userId, setuserId] = useState("");
-  const [Password, setPassword] = useState("");
-  const [Email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
 
   const onPasswordHandler = (event: { currentTarget: { value: SetStateAction<string>; }; }) => {
     setPassword(event.currentTarget.value)
@@ -53,7 +58,7 @@ const onEmailHandler = (event: { currentTarget: { value: SetStateAction<string>;
             label="Email"
             variant="outlined"
             margin="normal"            
-            value={Email}
+            value={email}
             onChange={onEmailHandler}
             required
           />
@@ -73,7 +78,7 @@ const onEmailHandler = (event: { currentTarget: { value: SetStateAction<string>;
             variant="outlined"
             type="password"
             margin="normal"
-            value={Password}
+            value={password}
             onChange={onPasswordHandler}
             required
           />
@@ -85,11 +90,7 @@ const onEmailHandler = (event: { currentTarget: { value: SetStateAction<string>;
               className="loginPageButton"
               size="large"
               sx={{ mt: 3, pl: 34, pr: 34, pt: 2, pb: 2 }}
-              onClick={() => saveUserData({
-                id: userId,
-                Email: Email,
-                password: Password
-              })}
+              onClick={() => saveUserData()}
             >
               로그인
             </Button>
