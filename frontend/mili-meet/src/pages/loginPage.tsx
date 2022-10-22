@@ -3,22 +3,22 @@ import styles from "./loginPage.module.css";
 import { Box } from "@mui/material";
 import Link from "next/link";
 import { SetStateAction, useState } from 'react';
-
+import { doc, getDoc } from "firebase/firestore";
 
 // 로그인 화면
 function Login() {
 
-//로그인 페이지 구현 코드 작성을 위해 임시로 firebase 사용  
+//로그인 페이지 구현 코드 작성을 위해 임시로 firebase 사용
  async function getUser(userData: any) {
-  const response = await fetch('https://mili-meet-default-rtdb.firebaseio.com/', {
-    method: 'POST',
-    body: JSON.stringify(userData),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  });
-  const data = await response.json();
-  console.log(data);
+  const docRef = doc(userData);
+  const docSnap = await getDoc(docRef);
+  
+  if (docSnap.exists()) {
+    console.log("Document data:", docSnap.data());
+  } else {
+    // doc.data() will be undefined in this case
+    console.log("No such document!");
+  }
 }
 
   const [userId, setuserId] = useState("");
@@ -72,7 +72,10 @@ function Login() {
                 className="loginPageButton"
                 size="large"
                 sx={{ mt: 3, pl: 9, pr: 9, pt: 2, pb: 2 }}
-                onClick={() => getUser()}
+                onClick={() => getUser({
+                  id : {userId},
+                  password : {Password}
+                })}
               >
                 로그인
               </Button>
