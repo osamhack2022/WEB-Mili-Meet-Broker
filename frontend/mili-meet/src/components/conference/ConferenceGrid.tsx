@@ -1,22 +1,12 @@
 import { styled } from '@mui/material';
 import { Typography, Avatar } from '@mui/material';
+import Video from '../Video';
 
 const ConferenceGridContainer = styled('div')`
   margin: 1rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
-`;
-
-const ConferenceUser = styled('div')`
-  background-color: #646464;
-  aspect-ratio: 16 / 9;
-  margin-top: auto;
-  margin-bottom: auto;
-  border-radius: .5rem;
-  position: relative;
-  display: flex;
-  align-items: flex-end;
 `;
 
 const ConferenceUserProfile = styled(Avatar)`
@@ -36,24 +26,24 @@ const ConferenceUserName = styled(Typography)`
   margin: .5rem;
 `;
 
-function ConferenceGrid() {
+function ConferenceGrid({ caller }) {
   return (
     <ConferenceGridContainer>
-      <ConferenceUser>
+      <Video>
         <ConferenceUserProfile alt="ABC" src="/" />
         <ConferenceUserName>이름1</ConferenceUserName>
-      </ConferenceUser>
-      <ConferenceUser></ConferenceUser>
-      <ConferenceUser></ConferenceUser>
-      <ConferenceUser></ConferenceUser>
-      <ConferenceUser></ConferenceUser>
-      <ConferenceUser></ConferenceUser>
-      <ConferenceUser></ConferenceUser>
-      <ConferenceUser></ConferenceUser>
-      <ConferenceUser></ConferenceUser>
-      <ConferenceUser></ConferenceUser>
-      <ConferenceUser></ConferenceUser>
-      <ConferenceUser></ConferenceUser>
+      </Video>
+      <Video mediaStream={caller}></Video>
+      <Video></Video>
+      <Video></Video>
+      <Video></Video>
+      <Video></Video>
+      <Video></Video>
+      <Video></Video>
+      <Video></Video>
+      <Video></Video>
+      <Video></Video>
+      <Video></Video>
     </ConferenceGridContainer>
   );
 }

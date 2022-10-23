@@ -1,9 +1,10 @@
 import { styled } from '@mui/material';
+import { useState } from 'react';
+import { io } from 'socket.io-client';
 import BottomBar from '../components/conference/BottomBar';
 import ConferenceGrid from '../components/conference/ConferenceGrid';
 import SideBar from '../components/conference/SideBar';
 import TopBar from '../components/conference/TopBar';
-
 
 const Background = styled('div')({
   width: '100vw',
@@ -28,15 +29,27 @@ const Main = styled('div')({
   justifyContent: 'center'
 });
 
+const socket = io('https://osamhack2022-web-mili-meet-broker-7rrgrq5695q2pp9-8080.preview.app.github.dev');
+
+let callersPC: RTCPeerConnection[] = [];
+let calleesPC: RTCPeerConnection[] = [];
+
 function Conference() {
+  const [callerMediaStream, setCallerMediaStream] = useState<MediaStream>();
+
+  async function setDisplayMediaStream() {
+    const displayMediaStream = await navigator.mediaDevices.getDisplayMedia({ audio: false, video: true });
+    setCallerMediaStream(displayMediaStream);
+  }
+
   return (
     <Background>
       <TopBar />
       <MainContainer>
         <SideBar />
         <Main>
-          <ConferenceGrid />
-          <BottomBar />
+          <ConferenceGrid caller={callerMediaStream} />
+          <BottomBar setDisplayMediaStream={setDisplayMediaStream} />
         </Main>
       </MainContainer>
     </Background>

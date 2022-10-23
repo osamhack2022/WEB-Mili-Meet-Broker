@@ -28,7 +28,7 @@ const FabGroup = styled('div')`
   align-items: center;
 `;
 
-function BottomBar() {
+function BottomBar({ setDisplayMediaStream }: { setDisplayMediaStream: any }) {
   return (
     <BottomBarContainer>
       <Description>
@@ -37,7 +37,7 @@ function BottomBar() {
       </Description>
       <FabGroup>
         <Fab color='default' size='medium'><MicIcon /></Fab>
-        <Fab color='default' size='medium'><VideocamIcon /></Fab>
+        <Fab color='default' size='medium' onClick={setDisplayMediaStream}><VideocamIcon /></Fab>
         <Fab color='default' size='medium'><MoreVertIcon /></Fab>
         <Fab color='error' size='medium'><CallEndIcon /></Fab>
       </FabGroup>
