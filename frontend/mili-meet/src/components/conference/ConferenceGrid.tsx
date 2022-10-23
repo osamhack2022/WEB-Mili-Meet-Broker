@@ -29,12 +29,12 @@ const ConferenceUserName = styled(Typography)`
 function ConferenceGrid({ outbound, inbound }: { outbound: any, inbound: any }) {
   return (
     <ConferenceGridContainer>
-      <Video>
+      <Video mediaStream={outbound}>
         <ConferenceUserProfile alt="ABC" src="/" />
         <ConferenceUserName>이름1</ConferenceUserName>
       </Video>
-      <Video mediaStream={outbound}></Video>
       <Video mediaStream={inbound}></Video>
+      <Video></Video>
       <Video></Video>
       <Video></Video>
       <Video></Video>
