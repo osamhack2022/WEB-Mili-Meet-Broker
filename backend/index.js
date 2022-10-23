@@ -2,7 +2,6 @@ import { createServer } from 'http';
 import { Server } from 'socket.io';
 import express from 'express';
 import cors from 'cors';
-import cookie from 'cookie';
 import cookieParser from 'cookie-parser';
 
 const app = express();
@@ -17,58 +16,64 @@ const io = new Server(httpServer, {
 
 const sessions = {};
 
-// app.get('/create-session', (req, res) => {
-//   const sessionID = Math.random().toString(36).substring(2);
-//   sessions[sessionID] = { caller: id, callee: [] };
-
-// });
-
 io.on('connection', (socket) => {
   const sessionID = 'abcd';
-  let session = sessions[sessionID];
+  let session;
+  let type;
 
-  if (sessions[session] === undefined) {
-    sessions[session] = [socket];
-    session = sessions[session];
-  } else {
-    session.push(socket);
-  }
+  socket.on('connected', () => {
+    session = sessions[sessionID];
+    type = (session === undefined) ? 'caller' : 'callee';
 
+    if (type === 'caller') {
+      sessions[sessionID] = { caller: socket, callee: undefined }
+      session = sessions[sessionID];
+    } else {
+      session.callee = socket;
+    }
+
+    console.log(type, 'connected')
+  });
 
   socket.on('disconnect', () => {
-    session = session.filter((v) => v.id !== socket.id);
+    if (session === undefined) return;
+    if (type === 'caller') sessions[sessionID] = undefined;
+    else session.callee = undefined;
+
+    console.log(type, 'disconnected')
   });
 
   socket.on('offer', (offer) => {
-    session.callee
-      .map((calleeID) => sockets[calleeID])
-      .forEach((calleeSocket) => {
-        calleeSocket.emit('offer', offer);
-      });
+    if (type === 'caller') {
+      session.callee.emit('offer', offer);
+    } else {
+      session.caller.emit('offer', offer);
+    }
   });
 
   socket.on('answer', (answer) => {
-    const callerSocket = sockets[session.caller];
-    callerSocket.emit('answer', answer);
+    if (type === 'caller') {
+      session.callee.emit('answer', answer);
+    } else {
+      session.caller.emit('answer', answer);
+    }
+  });
+
+  socket.on('inbound-icecandidate', (icecandidate) => {
+    if (type === 'caller') {
+      session.callee.emit('outbound-icecandidate', icecandidate);
+    } else {
+      session.caller.emit('outbound-icecandidate', icecandidate);
+    }
+  });
+
+  socket.on('outbound-icecandidate', (icecandidate) => {
+    if (type === 'caller') {
+      session.callee.emit('inbound-icecandidate', icecandidate);
+    } else {
+      session.caller.emit('inbound-icecandidate', icecandidate);
+    }
   });
 });
-
-// io.on("connection", (socket) => {
-//   socket.on('offer', (offer) => {
-//     io.emit('offer', offer);
-//   });
-
-//   socket.on('answer', (answer) => {
-//     io.emit('answer', answer);
-//   });
-
-//   socket.on('caller-icecandidate', (icecandidate) => {
-//     io.emit('caller-icecandidate', icecandidate);
-//   });
-
-//   socket.on('callee-icecandidate', (icecandidate) => {
-//     io.emit('callee-icecandidate', icecandidate);
-//   });
-// });
 
 httpServer.listen(8080);

@@ -26,15 +26,15 @@ const ConferenceUserName = styled(Typography)`
   margin: .5rem;
 `;
 
-function ConferenceGrid({ caller }) {
+function ConferenceGrid({ outbound, inbound }: { outbound: any, inbound: any }) {
   return (
     <ConferenceGridContainer>
       <Video>
         <ConferenceUserProfile alt="ABC" src="/" />
         <ConferenceUserName>이름1</ConferenceUserName>
       </Video>
-      <Video mediaStream={caller}></Video>
-      <Video></Video>
+      <Video mediaStream={outbound}></Video>
+      <Video mediaStream={inbound}></Video>
       <Video></Video>
       <Video></Video>
       <Video></Video>
