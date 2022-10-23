@@ -16,7 +16,7 @@ const RTC_CONFIGURATION = {
 
 let pc: RTCPeerConnection;
 
-const socket = io('https://osamhack2022-web-mili-meet-broker-g55g59rv9qjhwwq5-8080.githubpreview.dev');
+const socket = io('https://osamhack2022-web-mili-meet-broker-7rrgrq5695q2pp9-8080.preview.app.github.dev');
 
 socket.on('answer', (answer: RTCSessionDescription) => {
   pc.setRemoteDescription(answer);
