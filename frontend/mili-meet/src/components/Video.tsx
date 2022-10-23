@@ -2,8 +2,8 @@ import { styled } from '@mui/material';
 import { useEffect, useReducer, useRef } from 'react';
 
 interface VideoProps {
-  mediaStream: MediaStream | undefined;
-  children: any;
+  mediaStream?: MediaStream | undefined;
+  children?: any;
 }
 
 const VideoStyled = styled('video')`
