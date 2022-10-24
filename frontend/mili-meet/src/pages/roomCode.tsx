@@ -4,6 +4,7 @@ import styles from "./register.module.css";
 import { Box } from "@mui/material";
 import Link from "next/link";
 import ProfileCard from "../components/ProfileCard";
+import React from "react";
 
 
 //회원가입 화면

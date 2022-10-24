@@ -6,10 +6,10 @@ import Link from "next/link";
 import { SetStateAction, useState } from 'react'
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import app from "./firebase";
+import React from "react";
 
 //회원가입 화면
 function Register() {
-
   //로그인 페이지 구현 코드 작성을 위해 임시로 firebase 사용
     async function saveUserData() {
       const auth = getAuth(app);
@@ -24,7 +24,8 @@ function Register() {
         const errorCode = error.code;
         const errorMessage = error.message;
         // ..
-      });
+      })
+    };
   
   const [userId, setuserId] = useState("");
   const [password, setPassword] = useState("");

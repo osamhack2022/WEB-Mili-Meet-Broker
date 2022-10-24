@@ -4,6 +4,7 @@ import { Box } from "@mui/material";
 import Link from "next/link";
 import { SetStateAction, useState } from 'react';
 import { doc, getDoc } from "firebase/firestore";
+import React from "react";
 
 // 로그인 화면
 function Login() {
