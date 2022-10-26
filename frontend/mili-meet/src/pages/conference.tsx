@@ -28,7 +28,7 @@ const Background = styled('div')({
 
 const MainContainer = styled('div')({
   width: '100%',
-  height: '100%',
+  height: '90vh',
   display: 'flex'
 });
 
@@ -72,6 +72,8 @@ function Conference() {
   const [outboundMediaStream, setOutboundMediaStream] = useState<MediaStream>();
   const [inboundMediaStream, setInboundMediaStream] = useState<MediaStream>();
 
+  const [gridMode, setGridMode] = useState(false);
+
   async function setDisplayMediaStream() {
     const displayMediaStream = await navigator.mediaDevices.getDisplayMedia({ audio: false, video: true });
     setOutboundMediaStream(displayMediaStream);
@@ -80,7 +82,7 @@ function Conference() {
   useEffect(() => {
     socket.emit('connected');
   }, []);
-  
+
   // outbound PC initalize
   useEffect(() => {
     outboundPC = new RTCPeerConnection(RTC_CONFIGURATION);
@@ -121,11 +123,11 @@ function Conference() {
 
   return (
     <Background>
-      <TopBar />
+      <TopBar setGridMode={setGridMode} />
       <MainContainer>
         <SideBar />
         <Main>
-          <ConferenceGrid outbound={outboundMediaStream} inbound={inboundMediaStream} />
+          <ConferenceGrid outbound={outboundMediaStream} inbound={inboundMediaStream} gridMode={gridMode} />
           <BottomBar setDisplayMediaStream={setDisplayMediaStream} />
         </Main>
       </MainContainer>
