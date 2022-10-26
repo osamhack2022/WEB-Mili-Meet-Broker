@@ -74,6 +74,15 @@ io.on('connection', (socket) => {
       session.caller.emit('inbound-icecandidate', icecandidate);
     }
   });
+
+  // 채팅
+  socket.on('chat', (chat) => {
+    if (type === 'caller') {
+      session.callee.emit('chat', { type: 'caller', msg: chat });
+    } else {
+      session.caller.emit('chat', { type: 'callee', msg: chat });
+    }
+  });
 });
 
 httpServer.listen(8080);
