@@ -45,7 +45,7 @@ function Video({ children, mediaStream }: VideoProps) {
   }
 
   return (
-    <VideoStyled ref={ref} width="640" height="360" muted autoPlay></VideoStyled>
+    <VideoStyled ref={ref} muted autoPlay></VideoStyled>
   );
 }
 
