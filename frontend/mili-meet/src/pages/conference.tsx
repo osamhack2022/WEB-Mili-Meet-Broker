@@ -45,6 +45,12 @@ const Main = styled('div')({
 let outboundPC: RTCPeerConnection;
 let inboundPC: RTCPeerConnection;
 
+
+type TChat = {
+  type: string;
+  msg: string;
+}[];
+
 const socket = io('https://osamhack2022-web-mili-meet-broker-7rrgrq5695q2pp9-8080.preview.app.github.dev');
 
 socket.on('answer', (answer: RTCSessionDescription) => {
@@ -68,11 +74,19 @@ socket.on('inbound-icecandidate', (candidate: RTCIceCandidate)  => {
   inboundPC.addIceCandidate(candidate);
 });
 
+function sendChat(msg: string) {
+  socket.emit('chat', msg);
+}
+
 function Conference() {
   const [outboundMediaStream, setOutboundMediaStream] = useState<MediaStream>();
   const [inboundMediaStream, setInboundMediaStream] = useState<MediaStream>();
 
   const [gridMode, setGridMode] = useState(false);
+
+  const [chat, setChat] = useState<TChat>([])
+
+  console.log(chat);
 
   async function setDisplayMediaStream() {
     const displayMediaStream = await navigator.mediaDevices.getDisplayMedia({ audio: false, video: true });
@@ -81,6 +95,13 @@ function Conference() {
 
   useEffect(() => {
     socket.emit('connected');
+  }, []);
+
+  // chat socket init
+  useEffect(() => {
+    socket.on('chat', (chat) => {
+      setChat((c) => [...c, chat]);
+    })
   }, []);
 
   // outbound PC initalize
@@ -125,7 +146,7 @@ function Conference() {
     <Background>
       <TopBar setGridMode={setGridMode} />
       <MainContainer>
-        <SideBar />
+        <SideBar chat={chat} sendChat={sendChat} />
         <Main>
           <ConferenceGrid outbound={outboundMediaStream} inbound={inboundMediaStream} gridMode={gridMode} />
           <BottomBar setDisplayMediaStream={setDisplayMediaStream} />

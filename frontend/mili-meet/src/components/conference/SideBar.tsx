@@ -3,6 +3,7 @@ import { Typography, TextField, Button, Divider } from '@mui/material';
 import CampaignIcon from '@mui/icons-material/Campaign';
 import PersonIcon from '@mui/icons-material/Person';
 import SendIcon from '@mui/icons-material/Send';
+import React, { useState } from 'react';
 
 
 const SideBarContainer = styled('div')({
@@ -44,7 +45,13 @@ const SendChat = styled('div')`
   gap: .5rem;
 `;
 
-function SideBar() {
+function SideBar({ chat, sendChat }: { chat: any, sendChat: any }) {
+  const [textField, setTextField] = useState('');
+
+  const onClick = () => {
+    sendChat(textField);
+  }
+
   return (
     <SideBarContainer>
       <div style={{ height: '100%', display: 'flex', flexDirection: 'column', gap: '1rem', margin: '0 10%' }}>
@@ -65,13 +72,14 @@ function SideBar() {
           <ChatList>
             <Typography variant="h5" sx={{ textAlign: 'center' }}>문자대화</Typography>
             <div>
-              <Typography sx={{ textAlign: 'left' }}>당직사령: ㅁㅁㅁ</Typography>
-              <Typography sx={{ textAlign: 'right' }}>당직사관: ㅁㅁㅁ</Typography>
+              {chat.map(({ type, msg }: { type: string, msg: string }, idx: number) => {
+                return <Typography sx={{ textAlign: ((type === 'caller') ? 'left' : 'right') }} key={idx}>{type}: {msg}</Typography>;
+              })}
             </div>
           </ChatList>
           <SendChat>
-            <TextField rows="2" label="문자입력" multiline />
-            <Button variant="contained" endIcon={<SendIcon />}>
+            <TextField rows="2" label="문자입력" multiline value={textField} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTextField(e.target.value)} />
+            <Button variant="contained" endIcon={<SendIcon />} onClick={onClick}>
               Send
             </Button>
           </SendChat>
