@@ -77,6 +77,7 @@ io.on('connection', (socket) => {
 
   // 채팅
   socket.on('chat', (chat) => {
+    console.log(type, chat);
     if (type === 'caller') {
       session.callee.emit('chat', { type: 'caller', msg: chat });
     } else {
