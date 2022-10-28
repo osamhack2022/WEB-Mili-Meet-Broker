@@ -38,7 +38,7 @@ function Video({ children, mediaStream }: VideoProps) {
 
   if ((mediaStream === undefined && children !== undefined) || mediaStream?.active === false) {
     return (
-      <div style={{ backgroundColor: '#646464', borderRadius: '.5rem', position: 'relative' }}>
+      <div style={{ backgroundColor: '#646464', borderRadius: '.5rem', position: 'relative', aspectRatio: '16 / 9' }}>
         {children}
       </div>
     )
