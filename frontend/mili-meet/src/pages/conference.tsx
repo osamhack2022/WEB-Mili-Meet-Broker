@@ -1,4 +1,5 @@
 import { styled } from '@mui/material';
+import { useSession } from 'next-auth/react';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
@@ -51,7 +52,7 @@ type TChat = {
   msg: string;
 }[];
 
-const socket = io('https://osamhack2022-web-mili-meet-broker-7rrgrq5695q2pp9-8080.preview.app.github.dev');
+const socket = io('https://osamhack2022-web-mili-meet-broker-7rrgrq5695q2pp9-8088.preview.app.github.dev');
 
 socket.on('answer', (answer: RTCSessionDescription) => {
   console.log('outbound answer', answer)
@@ -86,7 +87,9 @@ function Conference() {
 
   const [chat, setChat] = useState<TChat>([])
 
-  console.log(chat);
+  const [inboundUsername, setInboundUsername] = useState<string>();
+
+  const { data } = useSession();
 
   async function setDisplayMediaStream() {
     const displayMediaStream = await navigator.mediaDevices.getDisplayMedia({ audio: false, video: true });
@@ -94,14 +97,19 @@ function Conference() {
   }
 
   useEffect(() => {
-    socket.emit('connected');
-  }, []);
+    if (!data?.user?.name) return;
+    socket.emit('connected', data?.user?.name);
+  }, [data?.user?.name]);
 
   // chat socket init
   useEffect(() => {
     socket.on('chat', (chat) => {
       setChat((c) => [...c, chat]);
-    })
+    });
+
+    socket.on('username', (username: string) => {
+      setInboundUsername(username);
+    });
   }, []);
 
   // outbound PC initalize
@@ -148,7 +156,7 @@ function Conference() {
       <MainContainer>
         <SideBar chat={chat} sendChat={sendChat} />
         <Main>
-          <ConferenceGrid outbound={outboundMediaStream} inbound={inboundMediaStream} gridMode={gridMode} />
+          <ConferenceGrid outbound={outboundMediaStream} inbound={inboundMediaStream} gridMode={gridMode} inboundUsername={inboundUsername} />
           <BottomBar setDisplayMediaStream={setDisplayMediaStream} />
         </Main>
       </MainContainer>

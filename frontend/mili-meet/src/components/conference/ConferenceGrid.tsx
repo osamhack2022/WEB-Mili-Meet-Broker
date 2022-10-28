@@ -1,5 +1,6 @@
 import { styled } from '@mui/material';
 import { Typography, Avatar } from '@mui/material';
+import { useSession } from 'next-auth/react';
 import Video from '../Video';
 
 const ConferenceUserProfile = styled(Avatar)`
@@ -19,11 +20,12 @@ const ConferenceUserName = styled(Typography)`
   margin: .5rem;
 `;
 
-function ConferenceGrid({ outbound, inbound, gridMode }: { outbound: any, inbound: any, gridMode: boolean }) {
+function ConferenceGrid({ outbound, inbound, gridMode, inboundUsername }: { outbound: any, inbound: any, gridMode: boolean, inboundUsername?: string }) {
+
   if (gridMode === true) {
-    return <Grid12 outbound={outbound} inbound={inbound} />;
+    return <Grid12 outbound={outbound} inbound={inbound} inboundUsername={inboundUsername} />;
   } else {
-  return <Grid2 outbound={outbound} inbound={inbound} />
+  return <Grid2 outbound={outbound} inbound={inbound} inboundUsername={inboundUsername} />
   }
 }
 
@@ -34,15 +36,23 @@ const Grid12Container = styled('div')`
   gap: 1rem;
 `
 
-function Grid12({ outbound, inbound }: { outbound: any, inbound: any }) {
+function Grid12({ outbound, inbound, inboundUsername }: { outbound: any, inbound: any, inboundUsername?: string }) {
+  const { data } = useSession();
+
   return (
     <Grid12Container>
       <Video mediaStream={outbound}>
-        <ConferenceUserProfile alt="ABC" src="/" />
-        <ConferenceUserName>이름1</ConferenceUserName>
+        <ConferenceUserProfile alt={data?.user?.name?.[0]} src="/" />
+        <ConferenceUserName>{data?.user?.name}</ConferenceUserName>
       </Video>
-      <Video mediaStream={inbound}></Video>
-      <Video></Video>
+      {(inboundUsername) ? (
+        <Video mediaStream={inbound}>
+          <ConferenceUserProfile alt={inboundUsername[0]} src="/" />
+          <ConferenceUserName>{inboundUsername}</ConferenceUserName>
+        </Video>
+      ) : (
+        <Video></Video>
+      )}
       <Video></Video>
       <Video></Video>
       <Video></Video>
@@ -63,14 +73,23 @@ const Grid2Container = styled('div')`
   gap: 1rem;
 `
 
-function Grid2({ outbound, inbound }: { outbound: any, inbound: any }) {
+function Grid2({ outbound, inbound, inboundUsername }: { outbound: any, inbound: any, inboundUsername?: string }) {
+  const { data } = useSession();
+
   return (
     <Grid2Container>
       <Video mediaStream={outbound}>
-        <ConferenceUserProfile alt="ABC" src="/" />
-        <ConferenceUserName>이름1</ConferenceUserName>
+        <ConferenceUserProfile alt={data?.user?.name?.[0]} src="/" />
+        <ConferenceUserName>{data?.user?.name}</ConferenceUserName>
       </Video>
-      <Video mediaStream={inbound}></Video>
+      {(inboundUsername) ? (
+        <Video mediaStream={inbound}>
+          <ConferenceUserProfile alt={inboundUsername[0]} src="/" />
+          <ConferenceUserName>{inboundUsername}</ConferenceUserName>
+        </Video>
+      ) : (
+        <Video></Video>
+      )}
     </Grid2Container>
   );
 }
