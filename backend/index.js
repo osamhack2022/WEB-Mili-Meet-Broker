@@ -16,20 +16,25 @@ const io = new Server(httpServer, {
 
 const sessions = {};
 
+let callerUsername;
+
 io.on('connection', (socket) => {
   const sessionID = 'abcd';
   let session;
   let type;
 
-  socket.on('connected', () => {
+  socket.on('connected', (username) => {
     session = sessions[sessionID];
     type = (session === undefined) ? 'caller' : 'callee';
 
     if (type === 'caller') {
       sessions[sessionID] = { caller: socket, callee: undefined }
       session = sessions[sessionID];
+      callerUsername = username;
     } else {
       session.callee = socket;
+      session.caller.emit('username', username);
+      session.callee.emit('username', callerUsername);
     }
 
     console.log(type, 'connected')
@@ -86,4 +91,4 @@ io.on('connection', (socket) => {
   });
 });
 
-httpServer.listen(8080);
+httpServer.listen(8088);
