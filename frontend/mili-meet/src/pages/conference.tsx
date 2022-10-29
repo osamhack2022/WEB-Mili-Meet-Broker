@@ -29,7 +29,7 @@ const Background = styled('div')({
 
 const MainContainer = styled('div')({
   width: '100%',
-  height: '90vh',
+  height: '100%',
   display: 'flex'
 });
 
@@ -154,7 +154,7 @@ function Conference() {
     <Background>
       <TopBar setGridMode={setGridMode} />
       <MainContainer>
-        <SideBar chat={chat} sendChat={sendChat} />
+        <SideBar chat={chat} sendChat={sendChat} inboundUsername={inboundUsername} />
         <Main>
           <ConferenceGrid outbound={outboundMediaStream} inbound={inboundMediaStream} gridMode={gridMode} inboundUsername={inboundUsername} />
           <BottomBar setDisplayMediaStream={setDisplayMediaStream} />

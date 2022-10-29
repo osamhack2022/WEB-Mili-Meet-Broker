@@ -4,9 +4,9 @@ import KeycloakProvider from "next-auth/providers/keycloak";
 export const authOptions: NextAuthOptions = {
   providers: [
     KeycloakProvider({
-      clientId: 'test-client',
-      clientSecret: 'fWN1jJEore3LEUxzpekCedgUdf92PI9K',
-      issuer: 'https://osamhack2022-web-mili-meet-broker-7rrgrq5695q2pp9-8080.preview.app.github.dev/realms/test',
+      clientId: 'frontend-client',
+      clientSecret: '6DT9hwLgXVzxpOp9So9JCJ2dtxPKicOS',
+      issuer: 'https://osamhack2022-web-mili-meet-broker-7rrgrq5695q2pp9-8080.preview.app.github.dev/realms/mili-meet',
     })
   ]
 }
