@@ -1,9 +1,9 @@
 import { styled } from '@mui/material';
 import { Typography, TextField, Button, Divider } from '@mui/material';
-import CampaignIcon from '@mui/icons-material/Campaign';
 import PersonIcon from '@mui/icons-material/Person';
 import SendIcon from '@mui/icons-material/Send';
 import React, { useState } from 'react';
+import { useSession } from 'next-auth/react';
 
 
 const SideBarContainer = styled('div')({
@@ -22,9 +22,10 @@ const ConnectedUserList = styled('div')`
 const ConnectedUser = styled('div')`
   display: flex;
   justify-content: space-around;
-  margin: .5rem 0;
+  margin: .5rem auto;
   border: 1px solid black;
   border-radius: .5rem;
+  width: 70%;
 `;
 
 const ChatContainer = styled('div')`
@@ -45,8 +46,10 @@ const SendChat = styled('div')`
   gap: .5rem;
 `;
 
-function SideBar({ chat, sendChat }: { chat: any, sendChat: any }) {
+function SideBar({ chat, sendChat, inboundUsername }: { chat: any, sendChat: any, inboundUsername?: string }) {
   const [textField, setTextField] = useState('');
+
+  const { data } = useSession();
 
   const onClick = () => {
     sendChat(textField);
@@ -59,13 +62,15 @@ function SideBar({ chat, sendChat }: { chat: any, sendChat: any }) {
         <ConnectedUserList>
           <Typography variant="h5" sx={{ textAlign: 'center' }}>접속인원</Typography>
           <ConnectedUser>
-            <CampaignIcon />
-            <Typography>당직사령</Typography>
-          </ConnectedUser>
-          <ConnectedUser>
             <PersonIcon />
-            <Typography>당직사관</Typography>
+            <Typography>{data?.user?.name}</Typography>
           </ConnectedUser>
+          {(inboundUsername) && (
+            <ConnectedUser>
+              <PersonIcon />
+              <Typography>{inboundUsername}</Typography>
+            </ConnectedUser>
+          )}
         </ConnectedUserList>
         <Divider />
         <ChatContainer>

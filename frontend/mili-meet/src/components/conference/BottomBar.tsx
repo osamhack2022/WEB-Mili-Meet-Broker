@@ -2,8 +2,8 @@ import { styled } from '@mui/material';
 import { Typography, Fab } from '@mui/material';
 import MicIcon from '@mui/icons-material/Mic';
 import VideocamIcon from '@mui/icons-material/Videocam';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CallEndIcon from '@mui/icons-material/CallEnd';
+import Link from 'next/link';
 
 const BottomBarContainer = styled('div')`
   padding: 2rem;
@@ -38,8 +38,9 @@ function BottomBar({ setDisplayMediaStream }: { setDisplayMediaStream: any }) {
       <FabGroup>
         <Fab color='default' size='medium'><MicIcon /></Fab>
         <Fab color='default' size='medium' onClick={setDisplayMediaStream}><VideocamIcon /></Fab>
-        <Fab color='default' size='medium'><MoreVertIcon /></Fab>
-        <Fab color='error' size='medium'><CallEndIcon /></Fab>
+        <Link href="/">
+          <Fab color='error' size='medium'><CallEndIcon /></Fab>
+        </Link>
       </FabGroup>
     </BottomBarContainer>
   );
