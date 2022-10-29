@@ -1,17 +1,23 @@
-import React from 'react';
-import { ReactKeycloakProvider } from '@react-keycloak/web';
-// 따로 정의한 파일이다. keycloak instance, option 들을 가져온다.
-import keycloak from '../../../../keycloak/keycloak';
-import RoomCode from "./roomCode";
+import { useSession, signIn, signOut } from "next-auth/react"
+
 function Index() {
+  const { data } = useSession();
+
+  console.log(data);
+
+  if (data) {
+    return (
+      <>
+        Signed in as {data.user?.name} <br />
+        <button onClick={() => signOut()}>Sign out</button>
+      </>
+    )
+  }
   return (
-  <>
-  <ReactKeycloakProvider
-  initOptions={{ onLoad: 'login-required'}}
-  authClient={keycloak}>
-    <RoomCode />
-    </ReactKeycloakProvider>
-  </>
+    <>
+      Not signed in <br />
+      <button onClick={() => signIn()}>Sign in</button>
+    </>
   )
 }
 
