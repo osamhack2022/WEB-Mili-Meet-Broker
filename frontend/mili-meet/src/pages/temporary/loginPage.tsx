@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 import Link from "next/link";
 import { SetStateAction, useState } from 'react';
 import { doc, getDoc } from "firebase/firestore";
-import keycloak from '../../../../keycloak/keycloak';
+import { signIn, useSession, signOut } from "next-auth/react";
 
 // 로그인 화면
 function Login() {
@@ -73,7 +73,7 @@ function Login() {
                 className="loginPageButton"
                 size="large"
                 sx={{ mt: 3, pl: 9, pr: 9, pt: 2, pb: 2 }}
-                onClick={() => keycloak.login()}
+                onClick={()=>signIn()}
               >
                 로그인
               </Button>
