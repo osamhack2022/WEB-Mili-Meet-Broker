@@ -1,12 +1,13 @@
 import { styled } from '@mui/material';
 import { useSession } from 'next-auth/react';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
-import BottomBar from '../components/conference/BottomBar';
-import ConferenceGrid from '../components/conference/ConferenceGrid';
-import SideBar from '../components/conference/SideBar';
-import TopBar from '../components/conference/TopBar';
+import BottomBar from '../../components/conference/BottomBar';
+import ConferenceGrid from '../../components/conference/ConferenceGrid';
+import SideBar from '../../components/conference/SideBar';
+import TopBar from '../../components/conference/TopBar';
 
 const RTC_CONFIGURATION = {
   iceServers: [
@@ -48,7 +49,7 @@ let inboundPC: RTCPeerConnection;
 
 
 type TChat = {
-  type: string;
+  type: 'caller' | 'callee';
   msg: string;
 }[];
 
@@ -75,9 +76,7 @@ socket.on('inbound-icecandidate', (candidate: RTCIceCandidate)  => {
   inboundPC.addIceCandidate(candidate);
 });
 
-function sendChat(msg: string) {
-  socket.emit('chat', msg);
-}
+
 
 function Conference() {
   const [outboundMediaStream, setOutboundMediaStream] = useState<MediaStream>();
@@ -91,20 +90,29 @@ function Conference() {
 
   const { data } = useSession();
 
+  const router = useRouter();
+  const { id } = router.query;
+
   async function setDisplayMediaStream() {
     const displayMediaStream = await navigator.mediaDevices.getDisplayMedia({ audio: false, video: true });
     setOutboundMediaStream(displayMediaStream);
   }
 
+  function sendChat(msg: string) {
+    socket.emit('chat', msg);
+    setChat((c) => [...c, { type: 'caller', msg }]);
+  }
+
   useEffect(() => {
     if (!data?.user?.name) return;
-    socket.emit('connected', data?.user?.name);
-  }, [data?.user?.name]);
+    if (!id) return;
+    socket.emit('connected', { username: data?.user?.name, id });
+  }, [data?.user?.name, id]);
 
   // chat socket init
   useEffect(() => {
     socket.on('chat', (chat) => {
-      setChat((c) => [...c, chat]);
+      setChat((c) => [...c, { type: 'callee', msg: chat.msg }]);
     });
 
     socket.on('username', (username: string) => {
