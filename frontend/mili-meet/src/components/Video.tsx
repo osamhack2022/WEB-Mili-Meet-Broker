@@ -24,11 +24,14 @@ function Video({ children, mediaStream }: VideoProps) {
   // eslint-disable-next-line no-unused-vars
   const [_, forceUpdate] = useReducer((x) => x + 1, 0);
 
+
   useEffect(() => {
     if (mediaStream === undefined) return;
     if (ref.current === null) return;
     ref.current.srcObject = mediaStream;
     ref.current.play();
+
+    console.log(mediaStream.getTracks());
 
     mediaStream.getTracks()[0].onended = () => {
       forceUpdate();

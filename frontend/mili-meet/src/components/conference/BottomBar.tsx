@@ -4,6 +4,7 @@ import MicIcon from '@mui/icons-material/Mic';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import CallEndIcon from '@mui/icons-material/CallEnd';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const BottomBarContainer = styled('div')`
   padding: 2rem;
@@ -29,11 +30,14 @@ const FabGroup = styled('div')`
 `;
 
 function BottomBar({ setDisplayMediaStream }: { setDisplayMediaStream: any }) {
+  const router = useRouter();
+  const id = router.query.id;
+
   return (
     <BottomBarContainer>
       <Description>
         <Typography variant='h4'>화상회의 제목</Typography>
-        <Typography>ABCDEF123</Typography>
+        <Typography>{id}</Typography>
       </Description>
       <FabGroup>
         <Fab color='default' size='medium'><MicIcon /></Fab>

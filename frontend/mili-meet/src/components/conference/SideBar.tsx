@@ -53,7 +53,10 @@ function SideBar({ chat, sendChat, inboundUsername }: { chat: any, sendChat: any
 
   const onClick = () => {
     sendChat(textField);
+    setTextField('');
   }
+
+  console.log(chat);
 
   return (
     <SideBarContainer>
@@ -77,8 +80,9 @@ function SideBar({ chat, sendChat, inboundUsername }: { chat: any, sendChat: any
           <ChatList>
             <Typography variant="h5" sx={{ textAlign: 'center' }}>문자대화</Typography>
             <div>
-              {chat.map(({ type, msg }: { type: string, msg: string }, idx: number) => {
-                return <Typography sx={{ textAlign: ((type === 'caller') ? 'left' : 'right') }} key={idx}>{type}: {msg}</Typography>;
+              {chat.map(({ type, msg }: { type: 'caller' | 'callee', msg: string }, idx: number) => {
+                const author = (type === 'caller') ? data?.user?.name : inboundUsername;
+                return <Typography sx={{ textAlign: ((type === 'caller') ? 'left' : 'right') }} key={idx}>{author}: {msg}</Typography>;
               })}
             </div>
           </ChatList>
