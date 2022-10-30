@@ -44,28 +44,28 @@
 ![](https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white)
 
 ## 설치 안내 (Installation Process)
+
 ```bash
 $ git clone https://github.com/osamhack2022-v2/WEB_Mili-Meet_Broker.git
 $ yarn or npm install
 $ yarn start or npm run start
 ```
 
-frontend
+Frontend 실행 방법
 ```bash
 $ cd /workspaces/WEB_Mili-Meet_Broker/frontend
 $ npm i
 $ docker build -t next .
 $ docker run -dP next
 ```
-
-backend
+Backend 실행 방법
 ```bash
 $ cd /workspaces/WEB_Mili-Meet_Broker/backend
 $ npm i
 $ node index.js
 ```
 
-keycloak
+Keycloak 실행 방법
 ```bash
 keycloak readme 문서 참고
 ```
