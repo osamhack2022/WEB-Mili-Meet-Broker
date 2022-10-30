@@ -50,9 +50,7 @@ $ yarn or npm install
 $ yarn start or npm run start
 ```
 
-## 프로젝트 사용법 (Getting Started)
-
-Frontend 실행 방법
+frontend
 ```bash
 $ cd /workspaces/WEB_Mili-Meet_Broker/frontend
 $ npm i
@@ -60,17 +58,27 @@ $ docker build -t next .
 $ docker run -dP next
 ```
 
-Backend 실행 방법
+backend
 ```bash
 $ cd /workspaces/WEB_Mili-Meet_Broker/backend
 $ npm i
 $ node index.js
 ```
 
-Keycloak 실행 방법
+keycloak
 ```bash
 keycloak readme 문서 참고
 ```
+
+## 프로젝트 사용법 (Getting Started)
+**마크다운 문법을 이용하여 자유롭게 기재**
+
+잘 모를 경우
+구글 검색 - 마크다운 문법
+[https://post.naver.com/viewer/postView.nhn?volumeNo=24627214&memberNo=42458017](https://post.naver.com/viewer/postView.nhn?volumeNo=24627214&memberNo=42458017)
+
+ 편한 마크다운 에디터를 찾아서 사용
+ 샘플 에디터 [https://stackedit.io/app#](https://stackedit.io/app#)
 
 ## 팀 정보 (Team Information)
 - JunSang Yu (junsang.yu3@gmail.com), Github Id: stupidJoon
