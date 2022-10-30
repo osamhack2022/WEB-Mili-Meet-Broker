@@ -46,7 +46,7 @@
 ## 설치 안내 (Installation Process)
 
 ```bash
-$ git clone https://github.com/osamhack2022-v2/WEB_Mili-Meet_Broker.git
+$ git clone https://github.com/osamhack2022/WEB_Mili-Meet_Broker.git
 $ yarn or npm install
 $ yarn start or npm run start
 ```
