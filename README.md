@@ -10,17 +10,15 @@
 ## 기능 설명
 1. 비디오, 오디오 실시간 스트리밍
 	- WebRTC를 이용한 P2P 스트리밍
-	- 비디오, 오디오 인풋뿐만 아니라 화면공유까지 지원
+	- 비디오 화면공유 지원
 2. 화상회의 세션 생성 및 수정
-3. 화상회의 참여자 초대 및 권한
-	- 호스트 권한으로 회의 종료 등 가능
+3. 화상회의 세션 참여
 4. 인증 처리
 	- 회원가입, 로그인, 로그아웃 등
-5. 화상회의 오디오 믹서 기능
 
 ## 컴퓨터 구성 / 필수 조건 안내 (Prerequisites)
 * ECMAScript 6 지원 브라우저 사용
-* 권장: Google Chrome 버젼 77 이상
+* 권장: Google Chrome 버젼 106.0.5249.121 이상
 
 ## 기술 스택 (Technique Used)
 ### Server(back-end)
@@ -30,6 +28,8 @@
 ![](https://img.shields.io/badge/webrtc-333333?style=for-the-badge&logo=WebRTC&logoColor=white)
 ![](https://img.shields.io/badge/socketio-010101?style=for-the-badge&logo=Socket.io&logoColor=white)
 ![](https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white)
+
+![](https://img.shields.io/badge/keycloak-EE0000?style=for-the-badge&logo=RedHat&logoColor=white)
 
 
 ### Front-end
@@ -47,29 +47,26 @@
 
 ```bash
 $ git clone https://github.com/osamhack2022/WEB_Mili-Meet_Broker.git
-$ yarn or npm install
-$ yarn start or npm run start
 ```
 
 ## 프로젝트 사용법 (Getting Started)
 
 Frontend 실행 방법
 ```bash
-$ cd /workspaces/WEB_Mili-Meet_Broker/frontend
-$ npm i
+$ cd frontend
 $ docker build -t next .
 $ docker run -dP next
 ```
 Backend 실행 방법
 ```bash
-$ cd /workspaces/WEB_Mili-Meet_Broker/backend
-$ npm i
+$ cd backend
+$ npm ci
 $ node index.js
 ```
 
 Keycloak 실행 방법
 ```bash
-keycloak readme 문서 참고
+$ docker run -p 8080:8080 --rm -it $(docker build -q .)
 ```
 ## 팀 정보 (Team Information)
 - JunSang Yu (junsang.yu3@gmail.com), Github Id: stupidJoon
