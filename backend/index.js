@@ -19,11 +19,12 @@ const sessions = {};
 let callerUsername;
 
 io.on('connection', (socket) => {
-  const sessionID = 'abcd';
+  let sessionID;
   let session;
   let type;
 
-  socket.on('connected', (username) => {
+  socket.on('connected', ({ username, id }) => {
+    sessionID = id;
     session = sessions[sessionID];
     type = (session === undefined) ? 'caller' : 'callee';
 
