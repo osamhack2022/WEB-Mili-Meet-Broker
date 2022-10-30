@@ -73,8 +73,8 @@ keycloak readme 문서 참고
 ```
 ## 팀 정보 (Team Information)
 - JunSang Yu (junsang.yu3@gmail.com), Github Id: stupidJoon
-- Minjun Lee (sohwi0305gmail.com), Github Id: min0305
-- Kwanghyeon Jo (gwangh7@gmail.com), Github Id: Kidprogramer1039
+- Minjun Lee (sohwi0305@gmail.com), Github Id: min0305
+- Kwanghyeon Jo (gwangh72@gmail.com), Github Id: Kidprogramer1039
 
 ## 저작권 및 사용권 정보 (Copyleft / End User License)
  * [MIT](https://github.com/osam2020-WEB/Sample-ProjectName-TeamName/blob/master/license.md)
