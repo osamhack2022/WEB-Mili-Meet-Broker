@@ -60,8 +60,8 @@ $ docker run -it -p 8081:8081 next
 Backend 실행 방법
 ```bash
 $ cd backend
-$ npm ci
-$ node index.js
+$ docker build -t node .
+$ docker run -it -p 8088:8088 node
 ```
 
 Keycloak 실행 방법
