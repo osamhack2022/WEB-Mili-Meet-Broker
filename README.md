@@ -66,6 +66,7 @@ $ node index.js
 
 Keycloak 실행 방법
 ```bash
+$ cd keycloak
 $ docker run -p 8080:8080 --rm -it $(docker build -q .)
 ```
 ## 팀 정보 (Team Information)
