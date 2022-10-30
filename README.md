@@ -58,7 +58,6 @@ $ npm i
 $ docker build -t next .
 $ docker run -dP next
 ```
-
 Backend 실행 방법
 ```bash
 $ cd /workspaces/WEB_Mili-Meet_Broker/backend
