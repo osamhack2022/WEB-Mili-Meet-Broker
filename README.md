@@ -55,7 +55,7 @@ Frontend 실행 방법
 ```bash
 $ cd frontend
 $ docker build -t next .
-$ docker run -dP next
+$ docker run -it -p 8081:8081 next
 ```
 Backend 실행 방법
 ```bash
