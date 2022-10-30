@@ -45,9 +45,29 @@
 
 ## 설치 안내 (Installation Process)
 ```bash
-$ git clone git주소
+$ git clone https://github.com/osamhack2022-v2/WEB_Mili-Meet_Broker.git
 $ yarn or npm install
 $ yarn start or npm run start
+```
+
+frontend
+```bash
+$ cd /workspaces/WEB_Mili-Meet_Broker/frontend
+$ npm i
+$ docker build -t next .
+$ docker run -dP next
+```
+
+backend
+```bash
+$ cd /workspaces/WEB_Mili-Meet_Broker/backend
+$ npm i
+$ node index.js
+```
+
+keycloak
+```bash
+keycloak readme 문서 참고
 ```
 
 ## 프로젝트 사용법 (Getting Started)
