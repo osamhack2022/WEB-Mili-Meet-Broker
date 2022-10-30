@@ -14,6 +14,4 @@ RUN npm ci
 
 RUN npm run build
 
-EXPOSE 3000
-
-CMD PORT=8081 npm start
+CMD PORT=8088 npm start
