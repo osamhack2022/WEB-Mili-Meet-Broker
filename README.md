@@ -51,7 +51,6 @@ $ yarn start or npm run start
 ```
 
 ## 프로젝트 사용법 (Getting Started)
-
 Frontend 실행 방법
 ```bash
 $ cd /workspaces/WEB_Mili-Meet_Broker/frontend
