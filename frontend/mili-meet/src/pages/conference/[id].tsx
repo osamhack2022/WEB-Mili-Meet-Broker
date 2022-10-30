@@ -53,7 +53,7 @@ type TChat = {
   msg: string;
 }[];
 
-const socket = io('https://osamhack2022-web-mili-meet-broker-7rrgrq5695q2pp9-8088.preview.app.github.dev');
+const socket = io(process.env.NEXT_PUBLIC_BACKEND_URL ?? 'https://osamhack2022-web-mili-meet-broker-7rrgrq5695q2pp9-8088.preview.app.github.dev');
 
 socket.on('answer', (answer: RTCSessionDescription) => {
   console.log('outbound answer', answer)
