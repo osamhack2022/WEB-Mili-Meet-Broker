@@ -1,4 +1,4 @@
-# Mili Meet(밀리미트)
+# Mili Meet (밀리미트)
 ![Mili-Meet](https://user-images.githubusercontent.com/98392401/198857744-47c9666c-f5a1-4188-8fd7-5429032ae49a.png)
 
 ## 프로잭트 소개
